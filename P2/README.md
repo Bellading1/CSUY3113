@@ -1,5 +1,5 @@
 # Instruction
-<space bar> to start/restart the game
+Space bar to start/restart the game
   
 W and S to control the left panel
 
