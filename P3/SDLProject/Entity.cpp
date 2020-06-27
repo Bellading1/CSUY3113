@@ -29,7 +29,6 @@ bool Entity::CheckCollision(Entity *other)
         {
             float ydist = fabs(position.y - object->position.y);
             float penetrationY = fabs(ydist - (height / 2.0f)-(object->height / 2.0f));
-            penetrationY = 0.0f;
             if (velocity.y > 0)
             {
                 position.y -= penetrationY;
@@ -55,7 +54,7 @@ bool Entity::CheckCollision(Entity *other)
         {
             float xdist = fabs(position.x - object->position.x);
             float penetrationX = fabs(xdist - (width / 2.0f) - (object->width / 2.0f));
-            penetrationX = 0.0f;
+   
             if (velocity.x > 0) {
                 position.x -= penetrationX;
                 velocity.x = 0;
@@ -101,11 +100,13 @@ void Entity::Update(float deltaTime, Entity* platforms, int platformCount)
     velocity.x = movement.x * speed;
     velocity += acceleration * deltaTime;
     
+    position.x += velocity.x * deltaTime; // Move on X
+    CheckCollisionsX(platforms, platformCount);// Fix if needed
+    
     position.y += velocity.y * deltaTime; // Move on Y
     CheckCollisionsY(platforms, platformCount);// Fix if needed
     
-    position.x += velocity.x * deltaTime; // Move on X
-    CheckCollisionsX(platforms, platformCount);// Fix if needed
+    
         
     
     

@@ -37,7 +37,6 @@ bool gameIsRunning = true;
 bool start = false;
 bool win = false;
 bool pressed =false;
-float direction = 0;
 ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
@@ -102,27 +101,10 @@ void Initialize() {
     state.balloon->acceleration = glm::vec3(0,-0.1f,0);
     state.balloon->speed = 1.4f;
     state.balloon->textureID = LoadTexture("balloon.png");
-    
-    fontTextureID = LoadTexture("font1.png");
-  
-    
-//    int *mission = new int[7]{77,105,125,125,109,111,110};
-//    state.characters->animRight = new int[4] {109, 37, 111, 125};
-//    state.balloon->animLeft = new int[4] {1, 5, 9, 13};
-//    state.balloon->animUp = new int[4] {2, 6, 10, 14};
-//    state.balloon->animDown = new int[4] {0, 4, 8, 12};
-
-//    state.characters->animIndices = mission;
-//    state.characters->animFrames = 16;
-//    state.characters->animIndex = 1;
-//    state.characters->animTime = 0;
-//    state.characters->animCols = 16;
-//    state.characters->animRows = 16;
-    
     state.balloon->height = 0.2f;
     state.balloon->width = 0.2f;
     
-//    state.balloon->jumpPower = 5.0f;
+    fontTextureID = LoadTexture("font1.png");
     
     state.sea = new Entity[PLATFORM_COUNT];
     GLuint platformTextureID = LoadTexture("sea.png");
@@ -312,8 +294,11 @@ void ProcessInput() {
                         break;
                         
                     case SDLK_SPACE:
-                       start = true;
-                        pressed = true;
+                        if(!pressed){
+                            start = true;
+                            pressed = true;
+                        }
+                       
                         
                         
                         break;
@@ -325,20 +310,23 @@ void ProcessInput() {
     const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
     if (keys[SDL_SCANCODE_LEFT]) {
-        
-        // state.balloon->movement.x = -1.0f;
-        state.balloon->acceleration.x -= 1.0f;
-        if(state.balloon->velocity.x > 0){
-            state.balloon->acceleration.x -= 2.0f;
+        if(start){
+            state.balloon->acceleration.x -= 1.0f;
+            if(state.balloon->velocity.x > 0){
+                state.balloon->acceleration.x -= 2.0f;
+            }
         }
+        
     }
     else if (keys[SDL_SCANCODE_RIGHT]) {
-        // state.balloon->movement.x = 1.0f;
-        state.balloon->acceleration.x += 1.0f;
-        if(state.balloon->velocity.x < 0){
-            state.balloon->acceleration.x += 2.0f;
+        if(start){
+            state.balloon->acceleration.x += 1.0f;
+            if(state.balloon->velocity.x < 0){
+                state.balloon->acceleration.x += 2.0f;
+            }
         }
-        //state.balloon->animIndices = state.balloon->animRight;
+        
+       
     }
     else {
         if(state.balloon->velocity.x > 0){
@@ -388,19 +376,13 @@ void Update() {
                ||state.balloon->collidedRight
                ||state.balloon->collidedBottom
                ||state.balloon->collidedTop){
-                std::cout << "collided\n";
-//                    state.balloon->acceleration = glm::vec3(0);
-//                    state.balloon->velocity = glm::vec3(0);
-//                    state.balloon->speed = 0;
+
                     win = false;
                     start = false;
                 }
             state.balloon->collidedBottom = false;
             state.balloon->Update(FIXED_TIMESTEP, state.land, LAND_COUNT);
             if(state.balloon->collidedBottom){
-//                state.balloon->acceleration = glm::vec3(0);
-//                state.balloon->velocity = glm::vec3(0);
-//                state.balloon->speed = 0;
                 win = true;
                 start = false;
             }
