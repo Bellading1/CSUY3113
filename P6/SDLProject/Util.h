@@ -1,5 +1,6 @@
 #pragma once
 #define GL_SILENCE_DEPRECATION
+
 #ifdef _WINDOWS
 #include <GL/glew.h>
 #endif
@@ -15,6 +16,6 @@
 class Util {
 public:
     static GLuint LoadTexture(const char* filePath);
-    static void DrawText(ShaderProgram *program, GLuint fontTextureID, std::string
-text, float size, float spacing, glm::vec3 position);
+    static void DrawText(ShaderProgram *program, int fontTextureID, std::string text, float size, float spacing, glm::vec3 position);
+    static void DrawIcon(ShaderProgram *program, int iconTexture, glm::vec3 position);
 };
