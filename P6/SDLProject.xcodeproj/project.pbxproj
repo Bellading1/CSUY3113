@@ -7,21 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		280FD17824D1ECAB00B68D97 /* crate1_diffuse.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 280FD17724D1EC9500B68D97 /* crate1_diffuse.png */; };
 		280FD18024D1F4BC00B68D97 /* cube.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 280FD17F24D1F4B500B68D97 /* cube.obj */; };
-		28AFCA1A24D9C8BF00003ABD /* floor.JPG in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA1924D9C8B800003ABD /* floor.JPG */; };
-		28AFCA1C24D9DE9D00003ABD /* ctg.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA1B24D9DE9800003ABD /* ctg.png */; };
 		28AFCA2024DA337600003ABD /* font1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA1F24DA336E00003ABD /* font1.png */; };
 		28AFCA2424DA520A00003ABD /* road.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA2324DA51E800003ABD /* road.png */; };
 		28AFCA2824DA546C00003ABD /* up.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA2724DA541300003ABD /* up.png */; };
 		28AFCA2B24DB1F1E00003ABD /* Raichu.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA2A24DB1EEA00003ABD /* Raichu.obj */; };
 		28AFCA2C24DB1F2100003ABD /* raichubody.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA2924DB1CC500003ABD /* raichubody.png */; };
-		28AFCA2E24DB26AC00003ABD /* bullet.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA2D24DB203A00003ABD /* bullet.png */; };
 		28AFCA3024DB2DD500003ABD /* crate.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA2F24DB2D8E00003ABD /* crate.jpeg */; };
 		28AFCA3224DB32DC00003ABD /* floor2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA3124DB32D600003ABD /* floor2.png */; };
-		28AFCA3524DB634000003ABD /* Bullet.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA3324DB632300003ABD /* Bullet.obj */; };
-		28AFCA3624DB634800003ABD /* Shell texture.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA3424DB633900003ABD /* Shell texture.png */; };
-		28AFCA3824DCBE2B00003ABD /* yu.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA3724DCBE2600003ABD /* yu.mp3 */; };
 		28AFCA3B24DDCE3900003ABD /* balloon.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA3924DDC8D800003ABD /* balloon.mp3 */; };
 		28AFCA3C24DDCE3B00003ABD /* hit.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28AFCA3A24DDC95900003ABD /* hit.wav */; };
 		DB1BA2952378E51A001F1FBC /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB1BA2932378E51A001F1FBC /* Mesh.cpp */; };
@@ -48,41 +41,27 @@
 				28AFCA2B24DB1F1E00003ABD /* Raichu.obj in CopyFiles */,
 				28AFCA2824DA546C00003ABD /* up.png in CopyFiles */,
 				28AFCA2024DA337600003ABD /* font1.png in CopyFiles */,
-				28AFCA1C24D9DE9D00003ABD /* ctg.png in CopyFiles */,
 				DBDF1B612323DE9E007CECB1 /* shaders in CopyFiles */,
-				28AFCA2E24DB26AC00003ABD /* bullet.png in CopyFiles */,
 				28AFCA3B24DDCE3900003ABD /* balloon.mp3 in CopyFiles */,
-				28AFCA3824DCBE2B00003ABD /* yu.mp3 in CopyFiles */,
-				280FD17824D1ECAB00B68D97 /* crate1_diffuse.png in CopyFiles */,
 				28AFCA3C24DDCE3B00003ABD /* hit.wav in CopyFiles */,
 				280FD18024D1F4BC00B68D97 /* cube.obj in CopyFiles */,
 				28AFCA2C24DB1F2100003ABD /* raichubody.png in CopyFiles */,
-				28AFCA1A24D9C8BF00003ABD /* floor.JPG in CopyFiles */,
 				28AFCA2424DA520A00003ABD /* road.png in CopyFiles */,
 				28AFCA3024DB2DD500003ABD /* crate.jpeg in CopyFiles */,
-				28AFCA3524DB634000003ABD /* Bullet.obj in CopyFiles */,
-				28AFCA3624DB634800003ABD /* Shell texture.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		280FD17724D1EC9500B68D97 /* crate1_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crate1_diffuse.png; sourceTree = "<group>"; };
 		280FD17F24D1F4B500B68D97 /* cube.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
-		28AFCA1924D9C8B800003ABD /* floor.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floor.JPG; sourceTree = "<group>"; };
-		28AFCA1B24D9DE9800003ABD /* ctg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ctg.png; sourceTree = "<group>"; };
 		28AFCA1F24DA336E00003ABD /* font1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font1.png; sourceTree = "<group>"; };
 		28AFCA2324DA51E800003ABD /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
 		28AFCA2724DA541300003ABD /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		28AFCA2924DB1CC500003ABD /* raichubody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raichubody.png; sourceTree = "<group>"; };
 		28AFCA2A24DB1EEA00003ABD /* Raichu.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Raichu.obj; sourceTree = "<group>"; };
-		28AFCA2D24DB203A00003ABD /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		28AFCA2F24DB2D8E00003ABD /* crate.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpeg; sourceTree = "<group>"; };
 		28AFCA3124DB32D600003ABD /* floor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = floor2.png; sourceTree = "<group>"; };
-		28AFCA3324DB632300003ABD /* Bullet.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Bullet.obj; sourceTree = "<group>"; };
-		28AFCA3424DB633900003ABD /* Shell texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shell texture.png"; sourceTree = "<group>"; };
-		28AFCA3724DCBE2600003ABD /* yu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = yu.mp3; sourceTree = "<group>"; };
 		28AFCA3924DDC8D800003ABD /* balloon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = balloon.mp3; sourceTree = "<group>"; };
 		28AFCA3A24DDC95900003ABD /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
 		DB1BA2932378E51A001F1FBC /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
@@ -143,21 +122,14 @@
 			children = (
 				28AFCA3924DDC8D800003ABD /* balloon.mp3 */,
 				28AFCA3A24DDC95900003ABD /* hit.wav */,
-				28AFCA3724DCBE2600003ABD /* yu.mp3 */,
-				28AFCA3424DB633900003ABD /* Shell texture.png */,
-				28AFCA3324DB632300003ABD /* Bullet.obj */,
 				28AFCA2F24DB2D8E00003ABD /* crate.jpeg */,
-				28AFCA2D24DB203A00003ABD /* bullet.png */,
 				28AFCA2A24DB1EEA00003ABD /* Raichu.obj */,
 				28AFCA2924DB1CC500003ABD /* raichubody.png */,
 				28AFCA3124DB32D600003ABD /* floor2.png */,
 				28AFCA1F24DA336E00003ABD /* font1.png */,
 				28AFCA2724DA541300003ABD /* up.png */,
 				28AFCA2324DA51E800003ABD /* road.png */,
-				28AFCA1B24D9DE9800003ABD /* ctg.png */,
-				28AFCA1924D9C8B800003ABD /* floor.JPG */,
 				280FD17F24D1F4B500B68D97 /* cube.obj */,
-				280FD17724D1EC9500B68D97 /* crate1_diffuse.png */,
 				DBDF1B5B2323DE8D007CECB1 /* glm */,
 				DBDF1B5D2323DE8D007CECB1 /* ShaderProgram.cpp */,
 				DBDF1B592323DE8D007CECB1 /* ShaderProgram.h */,

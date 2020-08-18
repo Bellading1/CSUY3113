@@ -20,9 +20,6 @@ bool Entity::CheckCollision(Entity *other)
     float xdist =fabs(position.x - other->position.x) - ((width + other->width) / 2.0f);
     float ydist = fabs(position.y - other->position.y) - ((height + other->height) / 2.0f);
     float zdist =fabs(position.z - other->position.z) - ((depth + other->depth) / 2.0f);
-    if (other->entityType == RAICHU) {
-        std::cout << xdist << ", " << ydist << ", " << zdist << std::endl;
-    }
     if (xdist < 0 && ydist < 0 && zdist < 0) return true;
     return false;
 }
@@ -34,7 +31,7 @@ void Entity::Update(float deltaTime, Entity *player, Entity *objects, int object
         float directionZ = position.z - player->position.z;
         rotation.y = glm::degrees(atan2f(directionX, directionZ));
         velocity.z = cos(glm::radians(rotation.y)) * -4.0f;
-        //velocity.x = sin(glm::radians(rotation.y)) * -1.0f;
+        
         
     }
     velocity += acceleration * deltaTime;
@@ -53,14 +50,10 @@ void Entity::Update(float deltaTime, Entity *player, Entity *objects, int object
         rotation.y += 45*deltaTime;
         rotation.z += 45*deltaTime;
     }
-    else if(entityType == ENEMY){
-        
-        //rotation.y += 30 * deltaTime;
-    }
+   
     else if(entityType == CRATE){
         for (int i = 2; i<objectCount; i++){
             if(CheckCollision(&objects[i])&& objects[i].entityType == RAICHU){
-                std::cout << CheckCollision(&objects[i]) << "aaaaaaaaaaa" << std::endl;
                 objects[i].position=glm::vec3(-0.2+rand()%10*0.1,0.5, -1*rand()%10-10);
                 minus = true;
                 break;
@@ -72,17 +65,12 @@ void Entity::Update(float deltaTime, Entity *player, Entity *objects, int object
         
         for (int i = 0; i<objectCount; i++){
             if(objects[i].entityType==RAICHU && CheckCollision(&objects[i])){
-            
-                killed = true;
+                objects[i].killed = true;
                 break;
             }
         }
     }
-    else if(entityType == FLOOR){
-//        if(position.z<=0.001){
-//            position.z = 0;
-//        }
-    }
+  
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::translate(modelMatrix, position);
     modelMatrix = glm::scale(modelMatrix,scale);

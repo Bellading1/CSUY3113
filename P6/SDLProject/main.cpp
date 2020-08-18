@@ -20,7 +20,7 @@
  
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
-bool start = true;
+bool start = false;
 bool generate = false;
 bool up = false;
 bool down = false;
@@ -104,6 +104,7 @@ void Initialize() {
     state.objects[0].acceleration = glm::vec3(0,0,0);
     state.objects[0].entityType = FLOOR;
     state.objects[0].scale = glm::vec3(1,1.5f,125);
+    state.objects[0].depth = 0.5;
     
     GLuint crateTextureID = Util::LoadTexture("crate.jpeg");
        Mesh *crateMesh = new Mesh();
@@ -112,7 +113,8 @@ void Initialize() {
     state.objects[1].mesh = crateMesh;
     state.objects[1].position = glm::vec3(-0.1,0.5,-0.5);
     state.objects[1].entityType = CRATE;
-    state.objects[1].scale = glm::vec3(0.01f,0.25f,0.5f);
+    state.objects[1].scale = glm::vec3(0.15f,0.25f,0.5f);
+    state.objects[1].width = 0.2;
     
 
     
@@ -155,10 +157,11 @@ void Initialize() {
         state.objects[i].textureID = raichuTextureID;
         state.objects[i].mesh = raichuMesh;
         state.objects[i].position = glm::vec3(0,0.5,-12-3*i);
-        state.objects[i].scale = glm::vec3(0.04f,0.04f,0.04f);
-        if (i == 2) {
-            state.objects[i].entityType = RAICHU;
-        }
+        state.objects[i].scale = glm::vec3(0.05f,0.05f,0.05f);
+        state.objects[i].width = 0.07;
+        state.objects[i].depth = 0.05;
+        state.objects[i].entityType = RAICHU;
+        
     }
     
     state.objects[2].velocity = glm::vec3(0,0,2);
@@ -172,7 +175,8 @@ void Initialize() {
         state.weapons->entityType = WEAPON;
         state.weapons->rotation = glm::vec3(0,0,0);
         state.weapons->scale = glm::vec3(0.01,0.01,0.01);
-    state.weapons->position = glm::vec3(state.objects[1].position.x+0.05, 0.67f, -0.35);
+        state.weapons->width = 0.05;
+       state.weapons->position = glm::vec3(state.objects[1].position.x+0.05, 0.63f, -0.35);
         state.weapons->acceleration = glm::vec3(0, 0, 0);
 
     uiViewMatrix = glm::mat4(1.0);
@@ -198,28 +202,43 @@ void ProcessInput() {
             case SDL_KEYDOWN:
                 switch (event.key.keysym.sym) {
                     case SDLK_SPACE:
+                        if(power>=10){
+                            state.weapons->velocity = glm::vec3(0,0,-1);
+                            power = power-10;
+                            shoot = false;
+                        }
+                    
+                        
+                        break;
+                    case SDLK_RETURN:
                         if(start == false){
                            start = true;
                         }
-                        else{
-                            if(power>=0){
-                                state.weapons->velocity = glm::vec3(0,0,-1);
-                                power = power-10;
-                                shoot = false;
-                            }
-                        }
-                        
                         break;
                     case SDLK_UP:
                         up = true;
+                        down = false;
+                        left = false;
+                        right = false;
                         break;
                     case SDLK_DOWN:
+                        up = false;
                         down = true;
+                        left = false;
+                        right = false;
                         break;
                     case SDLK_LEFT:
+                        up = false;
+                        down = false;
                         left = true;
+                        right = false;
+                        break;
                     case SDLK_RIGHT:
+                        up = false;
+                        down = false;
+                        left = false;
                         right = true;
+                        break;
                 }
                 break;
         }
@@ -227,36 +246,23 @@ void ProcessInput() {
 
     const Uint8 *keys = SDL_GetKeyboardState(NULL);
     if (keys[SDL_SCANCODE_A]) {
-        //state.player->rotation.y += 1.0f;
+       
         if(state.objects[1].position.x>=-0.4){
             state.objects[1].position.x -=0.03;
         }
         
     }
     else if (keys[SDL_SCANCODE_D]) {
-        //state.player->rotation.y -= 1.0f;
+        
         if(state.objects[1].position.x<=0.4){
             state.objects[1].position.x +=0.03;
         }
         
     }
-//    if (keys[SDL_SCANCODE_LEFT]) {
-//            left=true;
-//       }
-//       else if (keys[SDL_SCANCODE_RIGHT]) {
-//           right = true;
-//       }
+
     state.player->velocity.x = 0;
     state.player->velocity.z = 0;
-    if (keys[SDL_SCANCODE_W]) {
-//        state.player->velocity.z = cos(glm::radians(state.player->rotation.y)) * -2.0f;
-//        state.player->velocity.x = sin(glm::radians(state.player->rotation.y)) * -2.0f;
-        
-    } else if (keys[SDL_SCANCODE_S]) {
-//        state.player->velocity.z = cos(glm::radians(state.player->rotation.y)) * 2.0f;
-//        state.player->velocity.x = sin(glm::radians(state.player->rotation.y)) * 2.0f;
-        
-    }
+
 }
 
 #define FIXED_TIMESTEP 0.0166666f
@@ -314,11 +320,15 @@ void Update() {
             state.objects[4].velocity = glm::vec3(-0.3,0,0.8);
         }
         for (int i=2;i<OBJECT_COUNT;i++){
-            if(state.objects[i].position.z>=-0.1 || state.weapons->killed){
-                state.objects[i].position=glm::vec3(-0.2+rand()%10*0.1,0.5, -1*rand()%10-10);
+            if(state.objects[i].position.z>=-0.1){
+                state.objects[i].position=glm::vec3(-0.49+rand()%10*0.1,0.5, -1*rand()%10-10);
+            }
+            if(state.objects[i].killed) {
+                state.objects[i].position=glm::vec3(-0.49+rand()%10*0.1,0.5, -1*rand()%10-10);
                 state.weapons->position.x = state.objects[1].position.x+0.1;
+                state.weapons->position.z = -0.35;
                 state.weapons->velocity = glm::vec3(0);
-                state.weapons->killed = false;
+                state.objects[i].killed = false;
             }
             
             
@@ -326,24 +336,34 @@ void Update() {
             
         }
         if(state.objects[1].minus){
-            if(!lose && !win){
+            if(!lose && !win && start){
                 Mix_PlayChannel(-1, hit, 0);
+            
+        
+                lives--;
+                state.objects[1].minus = false;
             }
-
-            lives--;
-            state.objects[1].minus = false;
         }
     
-
-        
-        state.weapons->Update(FIXED_TIMESTEP,state.player,state.objects, OBJECT_COUNT);
-        
-        if(count<=58){
-            count++;
+        if (!state.weapons->velocity.z){
+            state.weapons->position.x = state.objects[1].position.x;
         }
-        else{
-            seconds--;
-            count = 0;
+        if (state.weapons->position.z < -8){
+            state.weapons->position.z = -0.35;
+            state.weapons->velocity = glm::vec3(0);
+        }
+        
+        
+        state.weapons->Update(FIXED_TIMESTEP,state.player,state.objects,OBJECT_COUNT);
+        if(start){
+            if(count<=58){
+                count++;
+            }
+            else{
+                seconds--;
+                count = 0;
+            }
+            
         }
         
         deltaTime -= FIXED_TIMESTEP;
@@ -360,13 +380,14 @@ void Render() {
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     program.SetProjectionMatrix(projectionMatrix);
-    //state.player->Render(&program);
+    
     program.SetViewMatrix(viewMatrix);
     if(start == false ){
         state.objects[0].Render(&program);
         program.SetProjectionMatrix(uiProjectionMatrix);
         program.SetViewMatrix(uiViewMatrix);
         Util::DrawText(&program, fontTextureID, "Beat Game", 0.8, -0.3f, glm::vec3(-2, 2.2, 0));
+        Util::DrawText(&program, fontTextureID, "Press ENTER to start", 0.8, -0.3f, glm::vec3(-5, 1.2, 0));
         
     }
    
@@ -416,15 +437,7 @@ void Render() {
         }
         program.SetProjectionMatrix(uiProjectionMatrix);
         program.SetViewMatrix(uiViewMatrix);
-        //Util::DrawText(&program, fontTextureID, "game", 0.5, -0.3f, glm::vec3(-6, 2.2, 0));
-   // Util::DrawText(&program, fontTextureID, "Lives: 3", 0.5, -0.3f, glm::vec3(-6, 3.2, 0));
-//    for (int i = 0; i < 3; i++)
-//    {
-//
-//     // These icons are small, so just move 0.5 to the right for each one.
-//        Util::DrawIcon(&program, heartTextureID, glm::vec3(5 + (i * 0.5f), 3.2, 0));
-//
-//    }
+        
     }
         SDL_GL_SwapWindow(displayWindow);
     
